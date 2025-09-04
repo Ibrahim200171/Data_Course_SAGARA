@@ -6,3 +6,4 @@ Use source("filename.R") in RStudio
 ## Commit Style
 ## Helpful Links
 ## Troubleshooting
+## License
