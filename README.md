@@ -5,3 +5,4 @@ Use source("filename.R") in RStudio
 ## Repository Structure
 ## Commit Style
 ## Helpful Links
+## Troubleshooting
