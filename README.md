@@ -4,3 +4,4 @@ Use source("filename.R") in RStudio
 ## Git Workflow
 ## Repository Structure
 ## Commit Style
+## Helpful Links
