@@ -7,3 +7,4 @@ Use source("filename.R") in RStudio
 ## Helpful Links
 ## Troubleshooting
 ## License
+## Author
