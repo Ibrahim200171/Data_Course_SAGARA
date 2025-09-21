@@ -1,0 +1,36 @@
+# ----- Task 8: find files in Data/ that begin with lowercase 'b' (recursive) -----
+b_files <- list.files(
+  path = "Data",
+  pattern = "^b",          # only files starting with 'b'
+  full.names = TRUE,
+  recursive = TRUE
+)
+b_files
+
+# ----- Task 9: display the first line of each 'b' file -----
+for (f in b_files) {
+  if (isTRUE(file.info(f)$isdir)) next   # skip if it's a directory
+  first_line <- tryCatch(
+    readLines(f, n = 1, warn = FALSE),
+    error = function(e) NA_character_
+  )
+  cat("----", f, "----\n")
+  cat(first_line, "\n\n")
+}
+
+# ----- Task 10: display the first line of every .csv file (recursive) -----
+all_csv_files <- list.files(
+  path = "Data",
+  pattern = "\\.csv$",
+  full.names = TRUE,
+  recursive = TRUE
+)
+
+for (f in all_csv_files) {
+  first_line <- tryCatch(
+    readLines(f, n = 1, warn = FALSE),
+    error = function(e) NA_character_
+  )
+  cat("----", f, "----\n")
+  cat(first_line, "\n\n")
+}
