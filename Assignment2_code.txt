@@ -1,36 +1,78 @@
-# ----- Task 8: find files in Data/ that begin with lowercase 'b' (recursive) -----
+############################################################
+# Assignment 2 — Tasks 4–10 (run inside your RProject)
+# All paths are relative to the project root.
+############################################################
+
+# -----------------------------
+# Task 4: List all .csv files in Data/ (non-recursive)
+# -----------------------------
+csv_files <- list.files(
+  path = "Data",
+  pattern = "\\.csv$",
+  ignore.case = TRUE,
+  full.names = TRUE,
+  recursive = FALSE
+)
+
+# -----------------------------
+# Task 5: Count how many files matched (length)
+# -----------------------------
+length(csv_files)
+
+# -----------------------------
+# Task 6: Read wingspan_vs_mass.csv into object "df"
+# -----------------------------
+df <- read.csv(file.path("Data", "wingspan_vs_mass.csv"))
+
+# -----------------------------
+# Task 7: Inspect the first 5 rows
+# -----------------------------
+head(df, 5)
+
+# -----------------------------
+# Task 8: Find (recursively) any files in Data/ that begin with lowercase 'b'
+# -----------------------------
 b_files <- list.files(
   path = "Data",
-  pattern = "^b",          # only files starting with 'b'
+  pattern = "^b",          # begins with 'b'
+  ignore.case = FALSE,     # lowercase only
   full.names = TRUE,
   recursive = TRUE
 )
-b_files
 
-# ----- Task 9: display the first line of each 'b' file -----
+# -----------------------------
+# Task 9: Display the first line of each of those 'b' files
+# -----------------------------
 for (f in b_files) {
-  if (isTRUE(file.info(f)$isdir)) next   # skip if it's a directory
+  # Skip if it's a directory
+  if (isTRUE(file.info(f)$isdir)) next
+  
   first_line <- tryCatch(
     readLines(f, n = 1, warn = FALSE),
     error = function(e) NA_character_
   )
+  
   cat("----", f, "----\n")
   cat(first_line, "\n\n")
 }
 
-# ----- Task 10: display the first line of every .csv file (recursive) -----
-all_csv_files <- list.files(
+# -----------------------------
+# Task 10: Do the same for ALL files that end in ".csv" (recursive)
+# -----------------------------
+all_csv_recursive <- list.files(
   path = "Data",
   pattern = "\\.csv$",
+  ignore.case = TRUE,
   full.names = TRUE,
   recursive = TRUE
 )
 
-for (f in all_csv_files) {
+for (f in all_csv_recursive) {
   first_line <- tryCatch(
     readLines(f, n = 1, warn = FALSE),
     error = function(e) NA_character_
   )
+  
   cat("----", f, "----\n")
   cat(first_line, "\n\n")
 }
