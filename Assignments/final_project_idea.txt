@@ -1,0 +1,20 @@
+1. Project Idea
+My final project will analyze the relationship between caffeine consumption and average hours of sleep among college students. The goal is to explore whether higher caffeine intake is associated with shorter sleep duration.
+
+2. Data Description
+The dataset will include the following columns:
+- Student_ID: Unique identifier for each participant
+- Caffeine_Intake_mg: Average daily caffeine consumption (in mg)
+- Sleep_Hours: Average nightly sleep duration (in hours)
+- Age: Student’s age
+- Gender: Male/Female/Other
+- Study_Hours: Average study hours per day
+
+3. Data Source
+Data could be collected through a survey distributed to Utah Valley University students or simulated from realistic values based on published averages (e.g., NIH sleep studies or FDA caffeine data).
+
+4. Fake Data Simulation
+For this assignment, I created a small fake dataset (30 students) with random but realistic values for each variable. This will allow me to test my analysis and visualization steps.
+
+5. Expected Analysis and Visualization
+I expect to see a negative correlation between caffeine intake and sleep hours. The primary visualization will be a scatterplot showing this relationship, with a regression line indicating the trend.
