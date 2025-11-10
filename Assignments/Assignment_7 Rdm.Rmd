@@ -1,0 +1,98 @@
+---
+output: 
+html_document:
+  number_sections=TRUE
+pagetitle: Assignment_7
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# **Assignment 7**
+
+In this assignment, you will use R (within R-Studio) to:
+
++ Take a real life data set and wrangle it into shape
++ Use a data dictionary to clean and merge two related data sets
+
+**All file paths should be relative, starting from *your* Assignment_7 directory!!**
+
+**This means that you need to create a new R-Project named "Assignment_7.Rproj" in your Assignment_7 directory, and work from scripts within that.**
+
+
+## **For credit...**
+
+1.  Push a completed version of your Rproj and R-script (details at end of this assignment) to GitHub
+2.  Your score will also depend on whether any files generated in this workflow are found in your repository
+
+
+____________
+
+# Your tasks:
+
+  + Import the 4 related datasets found in the Data_Course/Data/flights/ directory. There should be: 
+    - airlines.csv
+    - airports.csv
+    - jan_flights.csv
+    - Jan_snowfall.csv
+  + Combine the data sets appropriately to investigate whether departure delay was correlated with snowfall amount
+  + You will need to think carefully about column names
+  + Plot average departure delays by state over time
+  + Plot average departure delays by airline over time
+  + Plot effect of snowfall on departure *and* arrival delays
+_____________
+
+## Setup and data import
+
+```{r libraries}
+library(tidyverse)
+library(lubridate)
+
+# Load the joined flights + snowfall data that you created earlier
+flights_joined <- read_csv("output/flights_snowfall_joined.csv",
+                           show_col_types = FALSE)
+
+# Take a quick look at the columns so we know what we can use
+glimpse(flights_joined)
+
+## Average departure delays by state over time
+
+```{r delays_by_state}
+# If your state column is not ORIGIN_STATE_ABR, change that name here
+flights_state <- flights_joined %>%
+  rename(state = STATE)
+
+flights_state %>%
+  group_by(date, state) %>%
+  summarise(mean_dep_delay = mean(DEPARTURE_DELAY, na.rm = TRUE),
+            .groups = "drop") %>%
+  ggplot(aes(x = date, y = mean_dep_delay, color = state)) +
+  geom_line() +
+  labs(
+    title = "Average departure delay by state over time",
+    x = "Date",
+    y = "Mean departure delay (minutes)"
+  )
+
+
+
+```{r check_names}
+names(flights_joined)
+```{r check_names}
+names(flights_joined)
+
+```{r check_names}
+names(flights_joined)
+```{r libraries}
+library(tidyverse)
+library(lubridate)
+
+flights_joined <- read_csv("output/flights_snowfall_joined.csv",
+                           show_col_types = FALSE)
+
+glimpse(flights_joined)
+```{r check_names}
+
