@@ -1,0 +1,20 @@
+
+Call:
+lm(formula = U5MR ~ Year, data = unicef_tidy)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-144.71  -50.97  -19.49   44.76  301.48 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 4639.1005    84.2823   55.04   <2e-16 ***
+Year          -2.2909     0.0424  -54.04   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 73.44 on 10242 degrees of freedom
+  (2692 observations deleted due to missingness)
+Multiple R-squared:  0.2218,	Adjusted R-squared:  0.2218 
+F-statistic:  2920 on 1 and 10242 DF,  p-value: < 2.2e-16
+

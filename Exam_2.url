@@ -1,0 +1,5 @@
+[InternetShortcut]
+URL=https://github.com/gzahn/BIOL3100_Exams/tree/master/Exam_2
+library(tidyverse)
+unicef_raw <- read_csv("...your csv name...")
+glimpse(unicef_raw)

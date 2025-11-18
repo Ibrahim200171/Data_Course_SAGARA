@@ -1,0 +1,24 @@
+
+Call:
+lm(formula = U5MR ~ Year + Continent, data = unicef_tidy)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-146.110  -32.884   -3.505   27.732  265.080 
+
+Coefficients:
+                    Estimate Std. Error t value Pr(>|t|)    
+(Intercept)       4625.17370   60.45640   76.50   <2e-16 ***
+Year                -2.24711    0.03042  -73.88   <2e-16 ***
+ContinentAmericas  -99.81087    1.53823  -64.89   <2e-16 ***
+ContinentAsia      -73.08585    1.44092  -50.72   <2e-16 ***
+ContinentEurope   -138.46499    1.50338  -92.10   <2e-16 ***
+ContinentOceania  -104.79951    2.09648  -49.99   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 52.64 on 10238 degrees of freedom
+  (2692 observations deleted due to missingness)
+Multiple R-squared:  0.6004,	Adjusted R-squared:  0.6002 
+F-statistic:  3077 on 5 and 10238 DF,  p-value: < 2.2e-16
+
