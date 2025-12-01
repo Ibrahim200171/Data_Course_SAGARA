@@ -1,0 +1,40 @@
+---
+title: "Assignment 9 – Grad School Admissions"
+author: "Your Name"
+output: html_document
+---
+
+```{r load-data}
+library(tidyverse)
+
+# Load data (relative path)
+grad <- read_csv("Data/GradSchool_Admissions.csv")
+
+# Clean data
+grad <- grad %>%
+  mutate(
+    admit = factor(admit, levels = c(0,1),
+                   labels = c("Rejected","Admitted")),
+    rank = factor(rank)
+  )
+
+# Quick summaries
+summary(grad)
+head(grad)
+
+# Admission counts and proportions
+table(grad$admit)
+prop.table(table(grad$admit))
+
+# Logistic regression models
+m1 <- glm(admit ~ gre, data = grad, family = binomial)
+m2 <- glm(admit ~ gpa, data = grad, family = binomial)
+m3 <- glm(admit ~ rank, data = grad, family = binomial)
+m4 <- glm(admit ~ gre + gpa + rank, data = grad, family = binomial)
+
+# Compare models with AIC
+AIC(m1, m2, m3, m4)
+
+# Summary and odds ratios for final model
+summary(m4)
+exp(coef(m4))
