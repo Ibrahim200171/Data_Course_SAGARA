@@ -1,0 +1,72 @@
+---
+title: "Final Project: Graduate Admissions Analysis"
+output: html_document
+date: "2025-12-06"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE)
+library(tidyverse)
+library(gtsummary)
+library(ggeffects)
+Introduction
+This project explores how GRE, GPA, and undergraduate school rank influence the probability of being admitted to graduate school. The main question is: Does undergraduate rank affect admissions even after controlling for GPA and GRE?
+
+Data Loading
+Writing
+
+grad <- read_csv("Data/GradSchool_Admissions.csv") %>%
+mutate(
+admit = factor(admit, levels=c(0,1), labels=c("Rejected","Admitted")),
+rank = factor(rank, levels=1:4, labels=paste("Rank",1:4))
+)
+summary(grad)
+
+Exploratory Plots
+Admission Rate by Rank
+Writing
+
+grad %>%
+group_by(rank) %>%
+summarize(admit_rate = mean(admit=="Admitted")) %>%
+ggplot(aes(rank, admit_rate)) +
+geom_col(fill="#2c7fb8") +
+scale_y_continuous(labels=scales::percent) +
+labs(title="Admission Rate by Undergrad Rank", y="Admission Rate")
+
+GRE by Admission Status
+Writing
+
+ggplot(grad, aes(admit, gre, fill=admit)) +
+geom_boxplot() +
+theme(legend.position="none") +
+labs(title="GRE Scores by Admission Status", y="GRE Score")
+
+GPA by Admission Status
+Writing
+
+ggplot(grad, aes(admit, gpa, fill=admit)) +
+geom_boxplot() +
+theme(legend.position="none") +
+labs(title="GPA by Admission Status", y="GPA")
+
+Logistic Regression Model
+Writing
+
+fit <- glm(admit ~ gre + gpa + rank, data=grad, family="binomial")
+fit %>% tbl_regression(exponentiate=TRUE) %>% bold_labels()
+
+Marginal Effects (New Skill)
+Writing
+
+pred <- ggpredict(fit, terms=c("gre [200:800 by=50]", "rank"))
+plot(pred) + labs(title="Predicted Probability of Admission", x="GRE", y="Probability")
+
+Conclusions
+Undergraduate rank strongly affects admission probability even after adjusting for GRE and GPA.
+
+Higher GRE and GPA increase the odds of admission.
+
+Students from lower-ranked schools face a disadvantage independent of academic metrics.
+
+Future work could include fairness metrics, random forest modeling, or additional predictors.
